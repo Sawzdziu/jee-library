@@ -9,6 +9,15 @@ public class UsersDAO {
 
     private static List<User> users = new ArrayList<>();
 
+    static{
+        users.add(new User(1, "Adam", "Kowalski", "Klient", "akowal", "test", "Wroclaw"));
+        users.add(new User(2, "Justyna", "Kawka", "Pracownik", "jkawka", "test", "Wroclaw"));
+        users.add(new User(3, "Piotr", "Nowak", "Klient", "pnowak", "test", "Opole"));
+        users.add(new User(4, "Marcin", "Adamkowski", "Pracownik", "madamkowski", "test", "Zgorzelec"));
+        users.add(new User(5, "Katarzyna", "Opel", "Klient", "kopel", "test", "Wroclaw"));
+        users.add(new User(6, "Eustachy", "Motyka", "Klient", "emotyka", "test", "Grajewo"));
+    }
+
     public static void addUser(User user) {
         boolean exist = users.stream().noneMatch(u -> u.equals(user));
         if (exist) {

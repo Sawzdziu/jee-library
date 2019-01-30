@@ -7,10 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <title>Authentication</title>
+</head>
+<body>
+<h1>Welcome everybody!</h1>
+</body>
 </html>
