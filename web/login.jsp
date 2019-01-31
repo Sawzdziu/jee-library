@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Optional" %><%--
   Created by IntelliJ IDEA.
   User: Sawzdziu
   Date: 24.01.2019
@@ -27,11 +27,22 @@
 <body class="text-center">
 <form class="form-signin" method="post" action="login">
     <img class="mb-4" src="assets/baseline-local_library-24px.svg" alt="Library" width="72" height="72">
+    <%
+        if (request.getParameter("invalidLogin") != null) {
+
+    %>
+    <div class="alert alert-danger" role="alert">
+        Username/password is invalid!
+    </div>
+
+    <% }
+    %>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="username" class="sr-only">Username</label>
-    <input type="email" id="username" class="form-control" placeholder="Username" required="" autofocus="">
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+           autofocus="">
     <label for="password" class="sr-only">Password</label>
-    <input type="password" id="password" class="form-control" placeholder="Password" required="">
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Remember me
