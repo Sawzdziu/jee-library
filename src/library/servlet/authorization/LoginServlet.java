@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
 
         if (isValid(username, password)) {
             req.getSession().setAttribute("username", username);
-            resp.sendRedirect(resp.encodeRedirectURL("/index.jsp"));
+            resp.sendRedirect(resp.encodeRedirectURL("index.jsp"));
 
         } else {
             resp.sendRedirect(resp.encodeRedirectURL("login.jsp?invalidLogin"));

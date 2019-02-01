@@ -8,10 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <title>Authentication</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Library</title>
 </head>
 <body>
-<h1>Welcome everybody!</h1>
+<% String username = (String) request.getSession().getAttribute("username");%>
+<h1>Welcome <%=username%>!</h1>
+<a href="books.jsp">Books</a>
+<a href="logout">Logout</a>
 </body>
 </html>

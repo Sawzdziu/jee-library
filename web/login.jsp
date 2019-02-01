@@ -34,7 +34,15 @@
     <div class="alert alert-danger" role="alert">
         Username/password is invalid!
     </div>
+    <% }
+    %>
+    <%
+        if (request.getParameter("logout") != null) {
 
+    %>
+    <div class="alert alert-info" role="alert">
+        Logout successfully
+    </div>
     <% }
     %>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -46,6 +54,11 @@
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+    <div class="checkbox mb-3">
+        <label>
+            <a href="register.jsp"> Do You want an account?</a>
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

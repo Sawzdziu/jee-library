@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class User {
 
+    private static Integer actualID = 0;
     private Integer id;
     private String name;
     private String surname;
@@ -12,7 +13,7 @@ public class User {
     private String password;
     private String city;
 
-    public User(){
+    public User() {
         this.id = -1;
         this.name = "Test";
         this.surname = "Test";
@@ -20,6 +21,10 @@ public class User {
         this.login = "Login";
         this.password = "Password";
         this.city = "City";
+    }
+
+    public User(String name, String surname, String role, String login, String password, String city) {
+        this(actualID++, name, surname, role, login, password, city);
     }
 
     public User(Integer id, String name, String surname, String role, String login, String password, String city) {
