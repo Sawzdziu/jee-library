@@ -16,6 +16,7 @@
 <h1>Welcome <%=username%>!</h1>
 <a href="createBook.jsp">Add book</a>
 <a href="books.jsp">Books</a>
+<a href="editProfile.jsp">Edit profile</a>
 <a href="logout">Logout</a>
 </body>
 </html>

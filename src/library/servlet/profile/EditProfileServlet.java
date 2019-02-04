@@ -1,4 +1,4 @@
-package library.servlet.register;
+package library.servlet.profile;
 
 import library.model.dao.UsersDAO;
 import library.model.entity.User;
@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/editProfile")
+public class EditProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
         String city = req.getParameter("city");
@@ -22,21 +23,22 @@ public class RegisterServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if (!validateForm(name, surname, city, role, username, password)) {
+        if (!validateForm(id, name, surname, city, role, username, password)) {
             if (userExist(username))
-                resp.sendRedirect(resp.encodeRedirectURL("register.jsp?userExist"));
+                resp.sendRedirect(resp.encodeRedirectURL("editProfile.jsp?userExist"));
             else {
-                UsersDAO.addUser(new User(name, surname, role, username, password, city));
+                UsersDAO.updateUser(Integer.valueOf(id), name, surname, role, username, password, city);
                 req.getSession().setAttribute("username", username);
                 resp.sendRedirect(resp.encodeRedirectURL("index.jsp"));
             }
         } else {
-            resp.sendRedirect(resp.encodeRedirectURL("register.jsp?validationError"));
+            resp.sendRedirect(resp.encodeRedirectURL("editProfile.jsp?validationError"));
         }
     }
 
-    private boolean validateForm(String name, String surname, String city, String role, String username, String password) {
-        return name.isEmpty()
+    private boolean validateForm(String id, String name, String surname, String city, String role, String username, String password) {
+        return id.isEmpty()
+                || name.isEmpty()
                 || surname.isEmpty()
                 || city.isEmpty()
                 || role.isEmpty()

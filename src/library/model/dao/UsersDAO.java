@@ -34,14 +34,13 @@ public class UsersDAO {
     }
 
     public static void updateUser(Integer id, String name, String surname, String role, String login, String password, String city) {
-        User update = new User(id, name, surname, role, login, password, city);
-        users.stream().filter(user -> user.equals(update)).forEach(user -> {
-            user.setName(update.getName());
-            user.setSurname(update.getSurname());
-            user.setRole(update.getRole());
-            user.setCity(update.getCity());
-            user.setLogin(update.getLogin());
-            user.setPassword(update.getPassword());
+        users.stream().filter(user -> user.getId().equals(id)).forEach(user -> {
+            user.setName(name);
+            user.setSurname(surname);
+            user.setRole(role);
+            user.setCity(city);
+            user.setLogin(login);
+            user.setPassword(password);
         });
     }
 }

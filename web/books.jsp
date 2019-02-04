@@ -38,10 +38,10 @@
         </td>
         <td><%= book.getYear()%>
         </td>
-        <td><a href="editBook.jsp?id=<%=book.getId()%>">
+        <td><a href="editBook?id=<%=book.getId()%>">
             <button class="btn btn-info">Edit</button>
         </a>
-            <a href="deleteBook.jsp?id=<%=book.getId()%>">
+            <a href="deleteBook?id=<%=book.getId()%>">
                 <button class="btn btn-danger">Delete</button>
             </a>
         </td>
@@ -49,5 +49,6 @@
     <%}%>
     </tbody>
 </table>
+<a href="index.jsp">Return to home page</a>
 </body>
 </html>

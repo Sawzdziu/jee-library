@@ -10,8 +10,8 @@ public class BookDAO {
     private static List<Book> books = new ArrayList<>();
 
     static {
-        books.add(new Book( "Pan Tadeusz", "ISBN-123456789", 1987));
-        books.add(new Book( "Makbet", "ISBN-1324356446", 1998));
+        books.add(new Book("Pan Tadeusz", "ISBN-123456789", 1987));
+        books.add(new Book("Makbet", "ISBN-1324356446", 1998));
         books.add(new Book("Rok 1984", "ISBN-000000000", 1984));
         books.add(new Book("W pustyni i w puszczy", "ISBN-99999888877", 1975));
     }
@@ -32,12 +32,10 @@ public class BookDAO {
     }
 
     public static void updateBook(Integer id, String title, String isbn, Integer year) {
-        Book update = new Book(id, title, isbn, year);
-        books.stream().filter(book -> book.equals(update)).forEach(book -> {
-            book.setId(update.getId());
-            book.setTitle(update.getTitle());
-            book.setIsbn(update.getIsbn());
-            book.setYear(update.getYear());
+        books.stream().filter(book -> book.getId().equals(id)).forEach(book -> {
+            book.setTitle(title);
+            book.setIsbn(isbn);
+            book.setYear(year);
         });
     }
 }
