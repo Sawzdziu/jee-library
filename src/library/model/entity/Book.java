@@ -2,6 +2,7 @@ package library.model.entity;
 
 public class Book {
 
+    private static Integer actualID = 0;
     private Integer id;
     private String title;
     private String isbn;
@@ -12,6 +13,10 @@ public class Book {
         this.title = "Title";
         this.isbn = "ISBN";
         this.year = 0;
+    }
+
+    public Book(String title, String isbn, Integer year) {
+        this(actualID++, title, isbn, year);
     }
 
     public Book(Integer id, String title, String isbn, Integer year) {

@@ -36,7 +36,7 @@
         </td>
         <td><%= book.getIsbn()%>
         </td>
-        <td>@<%= book.getYear()%>
+        <td><%= book.getYear()%>
         </td>
         <td><a href="editBook.jsp?id=<%=book.getId()%>">
             <button class="btn btn-info">Edit</button>

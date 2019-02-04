@@ -10,10 +10,10 @@ public class BookDAO {
     private static List<Book> books = new ArrayList<>();
 
     static {
-        books.add(new Book(1, "Pan Tadeusz", "ISBN-123456789", 1987));
-        books.add(new Book(2, "Makbet", "ISBN-1324356446", 1998));
-        books.add(new Book(3, "Rok 1984", "ISBN-000000000", 1984));
-        books.add(new Book(4, "W pustyni i w puszczy", "ISBN-99999888877", 1975));
+        books.add(new Book( "Pan Tadeusz", "ISBN-123456789", 1987));
+        books.add(new Book( "Makbet", "ISBN-1324356446", 1998));
+        books.add(new Book("Rok 1984", "ISBN-000000000", 1984));
+        books.add(new Book("W pustyni i w puszczy", "ISBN-99999888877", 1975));
     }
 
     public static void addBook(Book book) {

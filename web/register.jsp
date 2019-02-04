@@ -102,6 +102,7 @@
 
     <label>
         <a href="login.jsp"> Do You want to Sign in?</a>
+    </label>
 
     <div class="control-group">
         <!-- Button -->
