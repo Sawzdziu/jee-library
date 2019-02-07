@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/editProfile")
 public class EditProfileServlet extends HttpServlet {
@@ -24,12 +25,16 @@ public class EditProfileServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         if (!validateForm(id, name, surname, city, role, username, password)) {
-            if (userExist(username))
-                resp.sendRedirect(resp.encodeRedirectURL("editProfile.jsp?userExist"));
-            else {
-                UsersDAO.updateUser(Integer.valueOf(id), name, surname, role, username, password, city);
-                req.getSession().setAttribute("username", username);
-                resp.sendRedirect(resp.encodeRedirectURL("index.jsp"));
+            try {
+                if (userExist(username))
+                    resp.sendRedirect(resp.encodeRedirectURL("editProfile.jsp?userExist"));
+                else {
+                    UsersDAO.updateUser(Integer.valueOf(id), name, surname, role, username, password, city);
+                    req.getSession().setAttribute("username", username);
+                    resp.sendRedirect(resp.encodeRedirectURL("index.jsp"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             resp.sendRedirect(resp.encodeRedirectURL("editProfile.jsp?validationError"));
@@ -47,7 +52,7 @@ public class EditProfileServlet extends HttpServlet {
     }
 
 
-    private boolean userExist(String username) {
+    private boolean userExist(String username) throws SQLException {
         return UsersDAO.getAllUsers().stream().anyMatch(user -> user.getLogin().equals(username));
     }
 }

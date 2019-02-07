@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/editBook")
 public class EditBookServlet extends HttpServlet {
@@ -26,7 +27,11 @@ public class EditBookServlet extends HttpServlet {
         String year = req.getParameter("year");
 
         if (!validateForm(bookId, title, isbn, year)) {
-            BookDAO.updateBook(Integer.valueOf(bookId), title, isbn, Integer.valueOf(year));
+            try {
+                BookDAO.updateBook(Integer.valueOf(bookId), title, isbn, Integer.valueOf(year));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             resp.sendRedirect(resp.encodeRedirectURL("books.jsp"));
         } else {
             resp.sendRedirect(resp.encodeRedirectURL("editBook.jsp?validationError&id=" + bookId));

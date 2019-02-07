@@ -23,6 +23,11 @@ public class User {
         this.city = "City";
     }
 
+    public User(String name, String surname, String role, String login, String city) {
+        this(actualID++, name, surname, role, login, "", city);
+    }
+
+
     public User(String name, String surname, String role, String login, String password, String city) {
         this(actualID++, name, surname, role, login, password, city);
     }

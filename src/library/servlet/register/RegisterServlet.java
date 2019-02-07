@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -23,12 +24,20 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         if (!validateForm(name, surname, city, role, username, password)) {
-            if (userExist(username))
-                resp.sendRedirect(resp.encodeRedirectURL("register.jsp?userExist"));
-            else {
-                UsersDAO.addUser(new User(name, surname, role, username, password, city));
-                req.getSession().setAttribute("username", username);
-                resp.sendRedirect(resp.encodeRedirectURL("index.jsp"));
+            try {
+                if (userExist(username))
+                    resp.sendRedirect(resp.encodeRedirectURL("register.jsp?userExist"));
+                else {
+                    try {
+                        UsersDAO.addUser(new User(name, surname, role, username, password, city));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    req.getSession().setAttribute("username", username);
+                    resp.sendRedirect(resp.encodeRedirectURL("index.jsp"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             resp.sendRedirect(resp.encodeRedirectURL("register.jsp?validationError"));
@@ -45,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
 
-    private boolean userExist(String username) {
+    private boolean userExist(String username) throws SQLException {
         return UsersDAO.getAllUsers().stream().anyMatch(user -> user.getLogin().equals(username));
     }
 }
